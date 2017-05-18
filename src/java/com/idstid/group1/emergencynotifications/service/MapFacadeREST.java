@@ -5,6 +5,7 @@
  */
 package com.idstid.group1.emergencynotifications.service;
 
+import com.idstid.group1.emergencynotifications.Appuser;
 import com.idstid.group1.emergencynotifications.Map;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -60,6 +61,15 @@ public class MapFacadeREST extends AbstractFacade<Map> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Map find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    
+    @GET
+    @Path("/mapname/{mapname}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Map find(@PathParam("mapname") String mapname) {
+        return (Map) getEntityManager()
+                .createNamedQuery("Map.findByMapname").
+                setParameter("mapname", mapname).getSingleResult();
     }
 
     @GET

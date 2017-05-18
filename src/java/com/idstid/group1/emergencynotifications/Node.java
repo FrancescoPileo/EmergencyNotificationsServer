@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Node.findByIdnode", query = "SELECT n FROM Node n WHERE n.idnode = :idnode")
     , @NamedQuery(name = "Node.findByNodename", query = "SELECT n FROM Node n WHERE n.nodename = :nodename")
     , @NamedQuery(name = "Node.findByX", query = "SELECT n FROM Node n WHERE n.x = :x")
+    , @NamedQuery(name = "Node.deleteAll", query = "DELETE FROM Node WHERE 1=1")
     , @NamedQuery(name = "Node.findByY", query = "SELECT n FROM Node n WHERE n.y = :y")})
 public class Node implements Serializable {
 
@@ -161,7 +162,11 @@ public class Node implements Serializable {
 
     @Override
     public String toString() {
-        return "com.idstid.group1.emergencynotifications.Node[ idnode=" + idnode + " ]";
+        return "Node[ idnode=" + idnode
+                + ", name=" + nodename 
+                + ", x=" +  x  
+                + ", y=" + y 
+                + ", map= " + idmap.getMapname()  + " ]";
     }
     
 }
