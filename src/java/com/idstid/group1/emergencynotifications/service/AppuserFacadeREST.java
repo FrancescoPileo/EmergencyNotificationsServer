@@ -24,8 +24,11 @@ import javax.ws.rs.core.MediaType;
  *
  * @author kekko
  */
+
+// TODO: la path di ogni FacadeREST deve essere ridotta
+
 @Stateless
-@Path("com.idstid.group1.emergencynotifications.appuser")
+@Path("appuser")
 public class AppuserFacadeREST extends AbstractFacade<Appuser> {
 
     @PersistenceContext(unitName = "EmergencyNotificationsPU")
