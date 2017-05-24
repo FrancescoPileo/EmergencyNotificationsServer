@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  * @author kekko
  */
 @Stateless
-@Path("com.idstid.group1.emergencynotifications.userposition")
+@Path("userposition")
 public class UserpositionFacadeREST extends AbstractFacade<Userposition> {
 
     @PersistenceContext(unitName = "EmergencyNotificationsPU")

@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  * @author kekko
  */
 @Stateless
-@Path("com.idstid.group1.emergencynotifications.beacon")
+@Path("beacon")
 public class BeaconFacadeREST extends AbstractFacade<Beacon> {
 
     @PersistenceContext(unitName = "EmergencyNotificationsPU")

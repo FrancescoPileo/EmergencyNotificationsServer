@@ -26,7 +26,7 @@ import javax.ws.rs.core.MediaType;
  * @author kekko
  */
 @Stateless
-@Path("com.idstid.group1.emergencynotifications.map")
+@Path("map")
 public class MapFacadeREST extends AbstractFacade<Map> {
 
     @PersistenceContext(unitName = "EmergencyNotificationsPU")

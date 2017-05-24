@@ -68,11 +68,20 @@ public class AppuserFacadeREST extends AbstractFacade<Appuser> {
     
     @GET
     @Path("/username/{username}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public Appuser find(@PathParam("username") String username) {
         return (Appuser) getEntityManager()
                 .createNamedQuery("Appuser.findByUsername").
                 setParameter("username", username).getSingleResult();
+    }
+    
+    @GET
+    @Path("/lastguest")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Appuser findLastGuest() {
+        return (Appuser) getEntityManager()
+                .createNamedQuery("Appuser.findByIsguest")
+                .getResultList().get(0);
     }
     
     @GET

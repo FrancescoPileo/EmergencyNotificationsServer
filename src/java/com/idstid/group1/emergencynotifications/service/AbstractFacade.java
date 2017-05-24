@@ -7,6 +7,7 @@ package com.idstid.group1.emergencynotifications.service;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.ws.rs.core.Response;
 
 /**
  *
