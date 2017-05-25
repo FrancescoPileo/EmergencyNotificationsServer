@@ -34,7 +34,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Appsession.findAll", query = "SELECT a FROM Appsession a")
     , @NamedQuery(name = "Appsession.findByIdsession", query = "SELECT a FROM Appsession a WHERE a.idsession = :idsession")
     , @NamedQuery(name = "Appsession.findBySessiontimestart", query = "SELECT a FROM Appsession a WHERE a.sessiontimestart = :sessiontimestart")
-    , @NamedQuery(name = "Appsession.findBySessiontimestop", query = "SELECT a FROM Appsession a WHERE a.sessiontimestop = :sessiontimestop")})
+    , @NamedQuery(name = "Appsession.findBySessiontimestop", query = "SELECT a FROM Appsession a WHERE a.sessiontimestop = :sessiontimestop")
+    , @NamedQuery(name = "Appsession.findByUsernameAndTimestart", query = "SELECT a FROM Appsession a WHERE a.sessiontimestart = :sessiontimestart AND a.username = :username")})
+
 public class Appsession implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -62,8 +64,9 @@ public class Appsession implements Serializable {
         this.idsession = idsession;
     }
 
-    public Appsession(Integer idsession, Date sessiontimestart) {
+    public Appsession(Integer idsession, Appuser username, Date sessiontimestart) {
         this.idsession = idsession;
+        this.username = username;
         this.sessiontimestart = sessiontimestart;
     }
 

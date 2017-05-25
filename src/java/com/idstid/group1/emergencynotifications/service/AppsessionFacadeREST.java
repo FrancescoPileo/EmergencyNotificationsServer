@@ -6,6 +6,7 @@
 package com.idstid.group1.emergencynotifications.service;
 
 import com.idstid.group1.emergencynotifications.Appsession;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -60,6 +61,17 @@ public class AppsessionFacadeREST extends AbstractFacade<Appsession> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Appsession find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    
+    @GET
+    @Path("/username/{username}/time/{time}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Appsession find(@PathParam("time") Date time, @PathParam("username") String username) {
+        return (Appsession) getEntityManager()
+                .createNamedQuery("Appuser.findByUsernameAndTimestart").
+                setParameter("username", username).
+                setParameter("sessiontimestart", time).
+                getSingleResult();
     }
 
     @GET
