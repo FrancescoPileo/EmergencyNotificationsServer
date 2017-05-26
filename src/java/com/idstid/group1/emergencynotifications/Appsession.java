@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Appsession.findByIdsession", query = "SELECT a FROM Appsession a WHERE a.idsession = :idsession")
     , @NamedQuery(name = "Appsession.findBySessiontimestart", query = "SELECT a FROM Appsession a WHERE a.sessiontimestart = :sessiontimestart")
     , @NamedQuery(name = "Appsession.findBySessiontimestop", query = "SELECT a FROM Appsession a WHERE a.sessiontimestop = :sessiontimestop")
-    , @NamedQuery(name = "Appsession.findByUsernameAndTimestart", query = "SELECT a FROM Appsession a WHERE a.sessiontimestart = :sessiontimestart AND a.username = :username")})
+    , @NamedQuery(name = "Appsession.findByUsername", query = "SELECT a FROM Appsession a WHERE a.username = :username ORDER BY a.idsession DESC")})
 
 public class Appsession implements Serializable {
 
@@ -48,7 +48,7 @@ public class Appsession implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "SESSIONTIMESTART")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIME)
     private Date sessiontimestart;
     @Column(name = "SESSIONTIMESTOP")
     @Temporal(TemporalType.TIMESTAMP)
@@ -124,7 +124,12 @@ public class Appsession implements Serializable {
 
     @Override
     public String toString() {
-        return "com.idstid.group1.emergencynotifications.Appsession[ idsession=" + idsession + " ]";
+        return "[idsession=" + idsession + ""
+                + " username=" + username.getUsername() + ""
+                + " timestart="+ sessiontimestart + ""
+                + " timestop ="+ sessiontimestop + "]";
     }
+    
+    
     
 }
