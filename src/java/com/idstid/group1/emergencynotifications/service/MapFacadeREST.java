@@ -114,21 +114,18 @@ public class MapFacadeREST extends AbstractFacade<Map> {
         
         // do we really need to send the file or can send "not modified"?
         if (modified != null) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "ciao");
-            Date modifiedDate = null;
+            Logger.getAnonymousLogger().log(Level.WARNING, modified);
 
             // we have to switch the locale to ENGLISH as parseDate parses in the default locale
             Locale old = Locale.getDefault();
             Locale.setDefault(Locale.ENGLISH);
 
-            modifiedDate = DateUtils.parseDate(modified);
-  
-            Logger.getAnonymousLogger().log(Level.WARNING, modifiedDate.toString());
+            Date modifiedDate = DateUtils.parseDate(modified);
             
             Locale.setDefault(old);
 
             if (modifiedDate != null) {
-                Logger.getAnonymousLogger().log(Level.WARNING, "mod ok");
+            Logger.getAnonymousLogger().log(Level.WARNING, modifiedDate.toString());
                 // modifiedDate does not carry milliseconds, but fileDate does
                 // therefore we have to do a range-based comparison
                 // 1000 milliseconds = 1 second
