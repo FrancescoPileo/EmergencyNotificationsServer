@@ -6,6 +6,8 @@
 package com.idstid.group1.emergencynotifications.service;
 
 import com.idstid.group1.emergencynotifications.Appsession;
+import com.idstid.group1.emergencynotifications.Appuser;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -39,11 +41,13 @@ public class AppsessionFacadeREST extends AbstractFacade<Appsession> {
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Appsession entity) {
+        
+        System.out.println(entity.toString());
         super.create(entity);
     }
 
     @PUT
-    @Path("{id}")
+    @Path("/id/{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Integer id, Appsession entity) {
         super.edit(entity);
@@ -60,6 +64,27 @@ public class AppsessionFacadeREST extends AbstractFacade<Appsession> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Appsession find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    
+    @GET
+    @Path("/username/{username}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Appsession find(@PathParam("username") String username) {
+        
+        System.out.println("ci arriva sci");
+        
+        Appuser user = (Appuser) getEntityManager().
+                createNamedQuery("Appuser.findByUsername").
+                setParameter("username", username).getSingleResult();
+
+        Appsession appsession =  (Appsession) getEntityManager()
+                .createNamedQuery("Appsession.findByUsername").
+                setParameter("username", user).
+                getResultList().get(0);
+        
+                System.out.println(appsession.toString());
+                
+       return appsession;         
     }
 
     @GET
