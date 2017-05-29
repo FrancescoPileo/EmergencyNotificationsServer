@@ -5,12 +5,10 @@
  */
 package com.idstid.group1.emergencynotifications.service;
 
-import com.idstid.group1.emergencynotifications.Appuser;
 import com.idstid.group1.emergencynotifications.Map;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -32,7 +30,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.apache.commons.lang.time.DateUtils;
+import org.apache.http.client.utils.DateUtils;
 
 /**
  *
@@ -111,28 +109,31 @@ public class MapFacadeREST extends AbstractFacade<Map> {
         if (!file.exists()) {
             return Response.status(Status.NOT_FOUND).build();
         }
-
+        
+        Logger.getAnonymousLogger().log(Level.WARNING, "ciaone");
+        
         // do we really need to send the file or can send "not modified"?
         if (modified != null) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "ciao");
             Date modifiedDate = null;
 
             // we have to switch the locale to ENGLISH as parseDate parses in the default locale
             Locale old = Locale.getDefault();
             Locale.setDefault(Locale.ENGLISH);
 
-            try {
-                modifiedDate = DateUtils.parseDate(modified, DEFAULT_PATTERNS);
-            } catch (ParseException ex) {
-                Logger.getLogger(MapFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            modifiedDate = DateUtils.parseDate(modified);
   
+            Logger.getAnonymousLogger().log(Level.WARNING, modifiedDate.toString());
+            
             Locale.setDefault(old);
 
             if (modifiedDate != null) {
+                Logger.getAnonymousLogger().log(Level.WARNING, "mod ok");
                 // modifiedDate does not carry milliseconds, but fileDate does
                 // therefore we have to do a range-based comparison
                 // 1000 milliseconds = 1 second
-                if (file.lastModified()-modifiedDate.getTime() < DateUtils.MILLIS_PER_SECOND) {
+                if (file.lastModified()-modifiedDate.getTime() < 
+                        org.apache.commons.lang.time.DateUtils.MILLIS_PER_SECOND) {
                     return Response.status(Status.NOT_MODIFIED).build();
                 }
             }
@@ -147,28 +148,10 @@ public class MapFacadeREST extends AbstractFacade<Map> {
         }
     }
 
-    /*** copied from org.apache.http.impl.cookie.DateUtils, Apache 2.0 License ***/
-
-    /**
-     * Date format pattern used to parse HTTP date headers in RFC 1123 format.
-     */
-    public static final String PATTERN_RFC1123 = "EEE, dd MMM yyyy HH:mm:ss zzz";
-
-    /**
-     * Date format pattern used to parse HTTP date headers in RFC 1036 format.
-     */
-    public static final String PATTERN_RFC1036 = "EEEE, dd-MMM-yy HH:mm:ss zzz";
-
-    /**
-     * Date format pattern used to parse HTTP date headers in ANSI C
-     * <code>asctime()</code> format.
-     */
-    public static final String PATTERN_ASCTIME = "EEE MMM d HH:mm:ss yyyy";
-
     public static final String[] DEFAULT_PATTERNS = new String[] {
-        PATTERN_RFC1036,
-        PATTERN_RFC1123,
-        PATTERN_ASCTIME
+        DateUtils.PATTERN_RFC1036,
+        DateUtils.PATTERN_RFC1123,
+        DateUtils.PATTERN_ASCTIME,
     };
 
     @GET
