@@ -48,7 +48,7 @@ public class Appsession implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "SESSIONTIMESTART")
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date sessiontimestart;
     @Column(name = "SESSIONTIMESTOP")
     @Temporal(TemporalType.TIMESTAMP)

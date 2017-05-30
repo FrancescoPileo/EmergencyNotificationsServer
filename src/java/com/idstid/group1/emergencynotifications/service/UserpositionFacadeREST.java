@@ -5,6 +5,8 @@
  */
 package com.idstid.group1.emergencynotifications.service;
 
+import com.idstid.group1.emergencynotifications.Appsession;
+import com.idstid.group1.emergencynotifications.Appuser;
 import com.idstid.group1.emergencynotifications.Userposition;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -67,6 +69,23 @@ public class UserpositionFacadeREST extends AbstractFacade<Userposition> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Userposition> findAll() {
         return super.findAll();
+    }
+    
+    @GET
+    @Path("/username/{username}/last")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Userposition find(@PathParam("username") String username) {
+                
+        Appuser user = (Appuser) getEntityManager().
+                createNamedQuery("Appuser.findByUsername").
+                setParameter("username", username).getSingleResult();
+
+        Userposition position =  (Userposition) getEntityManager()
+                .createNamedQuery("Userposition.findByIduser").
+                setParameter("iduser", user).
+                getResultList().get(0);
+                        
+       return position;         
     }
 
     @GET

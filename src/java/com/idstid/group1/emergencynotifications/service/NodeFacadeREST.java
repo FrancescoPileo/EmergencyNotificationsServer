@@ -62,7 +62,7 @@ public class NodeFacadeREST extends AbstractFacade<Node> {
     }
 
     @GET
-    @Path("{id}")
+    @Path("/id/{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Node find(@PathParam("id") Integer id) {
         return super.find(id);

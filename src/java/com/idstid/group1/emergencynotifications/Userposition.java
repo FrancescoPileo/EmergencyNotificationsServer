@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Userposition.findAll", query = "SELECT u FROM Userposition u")
     , @NamedQuery(name = "Userposition.findByIdposition", query = "SELECT u FROM Userposition u WHERE u.idposition = :idposition")
-    , @NamedQuery(name = "Userposition.findByDetectiontime", query = "SELECT u FROM Userposition u WHERE u.detectiontime = :detectiontime")})
+    , @NamedQuery(name = "Userposition.findByDetectiontime", query = "SELECT u FROM Userposition u WHERE u.detectiontime = :detectiontime")
+    , @NamedQuery(name = "Userposition.findByIduser", query = "SELECT u FROM Userposition u WHERE u.iduser = :iduser ORDER BY u.idposition DESC")})
 public class Userposition implements Serializable {
 
     private static final long serialVersionUID = 1L;
