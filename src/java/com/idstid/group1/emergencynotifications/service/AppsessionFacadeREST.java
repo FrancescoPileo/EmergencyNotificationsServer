@@ -67,12 +67,10 @@ public class AppsessionFacadeREST extends AbstractFacade<Appsession> {
     }
     
     @GET
-    @Path("/username/{username}")
+    @Path("/username/{username}/last")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Appsession find(@PathParam("username") String username) {
-        
-        System.out.println("ci arriva sci");
-        
+                
         Appuser user = (Appuser) getEntityManager().
                 createNamedQuery("Appuser.findByUsername").
                 setParameter("username", username).getSingleResult();
