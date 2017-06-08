@@ -5,7 +5,9 @@
  */
 package com.idstid.group1.emergencynotifications.service;
 
+import com.idstid.group1.emergencynotifications.Appuser;
 import com.idstid.group1.emergencynotifications.Enviromentalvalues;
+import com.idstid.group1.emergencynotifications.Userposition;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -60,6 +62,15 @@ public class EnviromentalvaluesFacadeREST extends AbstractFacade<Enviromentalval
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Enviromentalvalues find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    
+    @GET
+    @Path("/lasts")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Enviromentalvalues> findLasts() {
+       return getEntityManager()
+                .createNamedQuery("Enviromentalvalues.findLasts").
+                getResultList();         
     }
 
     @GET

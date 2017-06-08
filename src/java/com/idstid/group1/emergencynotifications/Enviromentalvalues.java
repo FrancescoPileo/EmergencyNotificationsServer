@@ -44,7 +44,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Enviromentalvalues.findByGyrz", query = "SELECT e FROM Enviromentalvalues e WHERE e.gyrz = :gyrz")
     , @NamedQuery(name = "Enviromentalvalues.findByMagx", query = "SELECT e FROM Enviromentalvalues e WHERE e.magx = :magx")
     , @NamedQuery(name = "Enviromentalvalues.findByMagy", query = "SELECT e FROM Enviromentalvalues e WHERE e.magy = :magy")
-    , @NamedQuery(name = "Enviromentalvalues.findByMagz", query = "SELECT e FROM Enviromentalvalues e WHERE e.magz = :magz")})
+    , @NamedQuery(name = "Enviromentalvalues.findByMagz", query = "SELECT e FROM Enviromentalvalues e WHERE e.magz = :magz")
+    , @NamedQuery(name = "Enviromentalvalues.findLasts",  query = "SELECT e FROM Enviromentalvalues e WHERE e.idenv IN "
+            + "(SELECT MAX(f.idenv) FROM Enviromentalvalues f GROUP BY f.idbeacon)")
+    })
 public class Enviromentalvalues implements Serializable {
 
     private static final long serialVersionUID = 1L;
