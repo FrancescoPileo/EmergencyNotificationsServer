@@ -6,6 +6,7 @@
 package com.idstid.group1.emergencynotifications.service;
 
 import com.idstid.group1.emergencynotifications.Beacon;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -63,10 +64,18 @@ public class BeaconFacadeREST extends AbstractFacade<Beacon> {
     }
 
     @GET
+    @Path("getAll")
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Beacon> findAll() {
-        return super.findAll();
+        
+        List<Beacon> beacons =  (List) getEntityManager()
+                .createNamedQuery("Beacon.findAll").
+                getResultList();
+        
+        System.out.println("lista di beacon" + beacons.get(0).toString());
+
+        return beacons;
     }
 
     @GET

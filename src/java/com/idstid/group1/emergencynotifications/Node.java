@@ -60,13 +60,13 @@ public class Node implements Serializable {
     @NotNull
     @Column(name = "Y")
     private int y;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idnode")
-    private Collection<Userposition> userpositionCollection;
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "idnode")
+    private Collection<Userposition> userpositionCollection;*/
     @JoinColumn(name = "IDMAP", referencedColumnName = "IDMAP")
     @ManyToOne(optional = false)
     private Map idmap;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idnode")
-    private Collection<Beacon> beaconCollection;
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "idnode")
+    private Collection<Beacon> beaconCollection;*/
 
     public Node() {
     }
@@ -114,14 +114,14 @@ public class Node implements Serializable {
         this.y = y;
     }
 
-    @XmlTransient
+    /*@XmlTransient
     public Collection<Userposition> getUserpositionCollection() {
         return userpositionCollection;
     }
 
     public void setUserpositionCollection(Collection<Userposition> userpositionCollection) {
         this.userpositionCollection = userpositionCollection;
-    }
+    }*/
 
     public Map getIdmap() {
         return idmap;
@@ -131,14 +131,14 @@ public class Node implements Serializable {
         this.idmap = idmap;
     }
 
-    @XmlTransient
+    /*@XmlTransient
     public Collection<Beacon> getBeaconCollection() {
         return beaconCollection;
     }
 
     public void setBeaconCollection(Collection<Beacon> beaconCollection) {
         this.beaconCollection = beaconCollection;
-    }
+    }*/
 
     @Override
     public int hashCode() {

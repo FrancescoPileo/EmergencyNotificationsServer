@@ -72,8 +72,8 @@ public class Map implements Serializable {
     private Integer yref;
     @Column(name = "YREFPX")
     private Integer yrefpx;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idmap")
-    private Collection<Node> nodeCollection;
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "idmap")
+    private Collection<Node> nodeCollection;*/
 
     public Map() {
     }
@@ -160,14 +160,14 @@ public class Map implements Serializable {
         this.yrefpx = yrefpx;
     }
 
-    @XmlTransient
+    /*@XmlTransient
     public Collection<Node> getNodeCollection() {
         return nodeCollection;
     }
 
     public void setNodeCollection(Collection<Node> nodeCollection) {
         this.nodeCollection = nodeCollection;
-    }
+    }*/
 
     @Override
     public int hashCode() {

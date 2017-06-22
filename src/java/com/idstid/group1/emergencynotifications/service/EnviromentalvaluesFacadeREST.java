@@ -5,9 +5,7 @@
  */
 package com.idstid.group1.emergencynotifications.service;
 
-import com.idstid.group1.emergencynotifications.Appuser;
 import com.idstid.group1.emergencynotifications.Enviromentalvalues;
-import com.idstid.group1.emergencynotifications.Userposition;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
