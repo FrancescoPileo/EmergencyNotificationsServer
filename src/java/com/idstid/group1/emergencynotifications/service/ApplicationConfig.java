@@ -32,9 +32,11 @@ public class ApplicationConfig extends Application {
         resources.add(com.idstid.group1.emergencynotifications.service.AppsessionFacadeREST.class);
         resources.add(com.idstid.group1.emergencynotifications.service.AppuserFacadeREST.class);
         resources.add(com.idstid.group1.emergencynotifications.service.BeaconFacadeREST.class);
+        resources.add(com.idstid.group1.emergencynotifications.service.ChangelogFacadeREST.class);
         resources.add(com.idstid.group1.emergencynotifications.service.EnviromentalvaluesFacadeREST.class);
         resources.add(com.idstid.group1.emergencynotifications.service.MapFacadeREST.class);
         resources.add(com.idstid.group1.emergencynotifications.service.NodeFacadeREST.class);
+        resources.add(com.idstid.group1.emergencynotifications.service.TokenFacadeREST.class);
         resources.add(com.idstid.group1.emergencynotifications.service.UserpositionFacadeREST.class);
     }
     

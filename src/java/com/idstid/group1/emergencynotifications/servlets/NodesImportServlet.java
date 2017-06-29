@@ -130,6 +130,7 @@ public class NodesImportServlet extends HttpServlet {
             nodeFacade.create(node);
             //LOGGER.log(Level.INFO, node.toString());
         }
+        
     }
     
     
