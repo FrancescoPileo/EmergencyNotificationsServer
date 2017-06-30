@@ -43,6 +43,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Map.findByYrefpx", query = "SELECT m FROM Map m WHERE m.yrefpx = :yrefpx")})
 public class Map implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idmap")
+    private Collection<Node> nodeCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -192,6 +195,15 @@ public class Map implements Serializable {
     @Override
     public String toString() {
         return "com.idstid.group1.emergencynotifications.Map[ idmap=" + idmap + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Node> getNodeCollection() {
+        return nodeCollection;
+    }
+
+    public void setNodeCollection(Collection<Node> nodeCollection) {
+        this.nodeCollection = nodeCollection;
     }
     
 }

@@ -73,7 +73,7 @@ public class MapFacadeREST extends AbstractFacade<Map> {
     public Map find(@PathParam("id") Integer id) {
         return super.find(id);
     }
-    
+
     @GET
     @Path("/mapname/{mapname}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})

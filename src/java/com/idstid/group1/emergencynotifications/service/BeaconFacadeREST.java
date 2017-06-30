@@ -6,7 +6,6 @@
 package com.idstid.group1.emergencynotifications.service;
 
 import com.idstid.group1.emergencynotifications.Beacon;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -47,6 +46,7 @@ public class BeaconFacadeREST extends AbstractFacade<Beacon> {
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") String id, Beacon entity) {
+        System.out.println(entity.toString());
         super.edit(entity);
     }
 

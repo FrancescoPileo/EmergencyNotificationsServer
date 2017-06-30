@@ -54,7 +54,7 @@ public class NodeFacadeREST extends AbstractFacade<Node> {
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
-    
+
     @DELETE
     @Path("/all")
     public void remove() {

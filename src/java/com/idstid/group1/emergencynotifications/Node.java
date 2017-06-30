@@ -41,6 +41,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Node.findByY", query = "SELECT n FROM Node n WHERE n.y = :y")})
 public class Node implements Serializable {
 
+    @OneToMany(mappedBy = "idnode")
+    private Collection<Beacon> beaconCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -167,6 +170,15 @@ public class Node implements Serializable {
                 + ", x=" +  x  
                 + ", y=" + y 
                 + ", map= " + idmap.getMapname()  + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Beacon> getBeaconCollection() {
+        return beaconCollection;
+    }
+
+    public void setBeaconCollection(Collection<Beacon> beaconCollection) {
+        this.beaconCollection = beaconCollection;
     }
     
 }

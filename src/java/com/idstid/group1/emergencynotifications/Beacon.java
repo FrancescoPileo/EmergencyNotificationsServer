@@ -35,6 +35,10 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Beacon.findByIdbeacon", query = "SELECT b FROM Beacon b WHERE b.idbeacon = :idbeacon")})
 public class Beacon implements Serializable {
 
+    @Size(max = 50)
+    @Column(name = "EMERGENCY")
+    private String emergency;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -102,7 +106,16 @@ public class Beacon implements Serializable {
 
     @Override
     public String toString() {
-        return "com.idstid.group1.emergencynotifications.Beacon[ idbeacon=" + idbeacon + " ]";
+        return "Beacon[ idbeacon=" + idbeacon + ", " 
+                + "emergency=" + emergency + " ]";
+    }
+
+    public String getEmergency() {
+        return emergency;
+    }
+
+    public void setEmergency(String emergency) {
+        this.emergency = emergency;
     }
     
 }
