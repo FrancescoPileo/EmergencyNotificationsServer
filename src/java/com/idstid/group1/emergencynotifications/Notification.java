@@ -28,7 +28,7 @@ public class Notification {
     
     static public final int TEMP_MAX = 90;
     static public final int HUM_MAX = 95;
-    static public final double ACC_MAX = 0.5;
+    static public final double ACC_MAX = 1;
     
     
     public static JsonObject buildMessage(String idBeacon, String notification){

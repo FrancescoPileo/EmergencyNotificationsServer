@@ -125,9 +125,15 @@ public class NodesImportServlet extends HttpServlet {
     }
     
     private void storeNodes(){
-        nodeFacade.remove();
+        //nodeFacade.remove();
         for (Node node: nodeList) {
-            nodeFacade.create(node);
+            Node oldNode =  nodeFacade.find(node.getNodename());
+            if (oldNode != null){
+                node.setIdnode(oldNode.getIdnode());
+                nodeFacade.edit(oldNode.getIdnode(), node);
+            } else {
+                nodeFacade.create(node);
+            }
             //LOGGER.log(Level.INFO, node.toString());
         }
         

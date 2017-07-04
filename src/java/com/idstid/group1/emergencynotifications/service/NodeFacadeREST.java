@@ -67,6 +67,20 @@ public class NodeFacadeREST extends AbstractFacade<Node> {
     public Node find(@PathParam("id") Integer id) {
         return super.find(id);
     }
+    
+    @GET
+    @Path("/name/{nodename}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Node find(@PathParam("nodename") String nodename) {
+        Node node = null;
+        List<Node> nodes = this.getEntityManager().createNamedQuery("Node.findByNodename", Node.class).
+                setParameter("nodename", nodename).getResultList();
+        if (!nodes.isEmpty()){
+            node = nodes.get(0);
+        }
+        return node;
+        
+    }
 
     @GET
     @Override

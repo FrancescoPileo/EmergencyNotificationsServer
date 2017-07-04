@@ -6,27 +6,14 @@
 package com.idstid.group1.emergencynotifications.service;
 
 
-import com.google.gson.JsonPrimitive;
 import com.idstid.group1.emergencynotifications.Beacon;
 import com.idstid.group1.emergencynotifications.Enviromentalvalues;
 import com.idstid.group1.emergencynotifications.Notification;
 import com.idstid.group1.emergencynotifications.Token;
-import java.io.OutputStreamWriter;
 import static java.lang.Math.abs;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObject;
-import javax.json.JsonValue;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
@@ -95,7 +82,7 @@ public class EnviromentalvaluesFacadeREST extends AbstractFacade<Enviromentalval
         } else {
             beacon.setEmergency(null);
             beaconFacade.edit(beacon.getIdbeacon(), beacon);
-        };
+        }
     }
     
     @PUT
@@ -153,6 +140,4 @@ public class EnviromentalvaluesFacadeREST extends AbstractFacade<Enviromentalval
         return em;
     }
 
-   
-    
 }
