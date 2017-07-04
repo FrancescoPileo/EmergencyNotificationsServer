@@ -113,6 +113,28 @@ public class EnviromentalvaluesFacadeREST extends AbstractFacade<Enviromentalval
                 .createNamedQuery("Enviromentalvalues.findLasts").
                 getResultList();         
     }
+    
+    @GET
+    @Path("/beacon/{idbeacon}/last")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Enviromentalvalues findLast(@PathParam("idbeacon") String idbeacon) {
+       Enviromentalvalues value = null;
+       Beacon beacon = beaconFacade.find(idbeacon);
+       
+       if (beacon != null){
+            List <Enviromentalvalues> values =  (List <Enviromentalvalues>) getEntityManager()
+                    .createNamedQuery("Enviromentalvalues.findLastByBeaconid")
+                   .setParameter("idbeacon", beacon ).getResultList();
+            if (values!=null && !values.isEmpty()){
+                value = values.get(0);
+            }    
+       }
+       
+       return value;    
+             
+    }
+    
+    
 
     @GET
     @Override
